@@ -1,0 +1,42 @@
+/build
+
+# Firebase configuration
+app/google-services.json
+
+# Gradle
+.gradle/
+
+# Local configurations
+local.properties
+
+# Proguard
+*.pro
+*.properties
+proguard-rules.pro
+
+# Logs
+*.log
+
+# Miscellaneous
+*.tmp
+*.bak
+*.swp
+*~.nib
+*.mov
+*.swf
+*.user*
+*.DS_Store
+*.apk
+*.ap_
+*.aab
+*.ipa
+*.p12
+*.pem
+*.p8
+*.cer
+*.der
+*.mobileprovision
+*.orig
+
+# Secure strings
+res/values/strings.xml
