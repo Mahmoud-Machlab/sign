@@ -73,7 +73,7 @@ class Ar : ComponentActivity() {
 
 
 
-
+// Menu for selecting models
 @Composable
 fun Menu(modifier: Modifier,onClick:(String)->Unit) {
     var currentIndex by remember {
@@ -113,6 +113,7 @@ fun Menu(modifier: Modifier,onClick:(String)->Unit) {
 
 }
 
+// Component to render images in a circular shape
 @Composable
 fun CircularImage(
     modifier: Modifier=Modifier,
@@ -127,6 +128,9 @@ fun CircularImage(
     }
 }
 
+
+
+// Main AR screen with AR view and controls
 @Composable
 fun ARScreen(model:String) {
     val nodes = remember {
@@ -177,6 +181,7 @@ fun ARScreen(model:String) {
     }
 
 
+    // Reacting to model changes
     LaunchedEffect(key1 = model){
         modelNode.value?.loadModelGlbAsync(
             glbFileLocation = "models/${model}.glb",
@@ -187,7 +192,7 @@ fun ARScreen(model:String) {
 
 }
 
-
+// Data class for the food items shown in the menu
 data class Food(var name:String,var imageId:Int)
 
 

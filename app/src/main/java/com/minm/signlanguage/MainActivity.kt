@@ -1,17 +1,11 @@
 package com.minm.signlanguage
 
+// Import necessary dependencies
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.text.KeyboardActions
@@ -27,16 +21,11 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.*
 import com.minm.signlanguage.composableactivities.Ar
 import com.minm.signlanguage.ui.theme.SignLanguageTheme
 
-
-
+// Main Activity class
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,19 +42,24 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+// The primary Composable function for the SignLanguageApp
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
 @Composable
 fun SignLanguageApp() {
+    // Setup Firebase database
     val databaseUrl = LocalContext.current.getString(R.string.firebase_database_url)
     val database = FirebaseDatabase.getInstance(databaseUrl)
 
+    // State management for input text field
     var textInputState by remember { mutableStateOf(TextFieldValue()) }
     val databaseReference = database.getReference("messages")
+
+    // For handling keyboard actions
     val keyboardController = LocalSoftwareKeyboardController.current
     val context = LocalContext.current
 
-
     Column {
+        // Text field for user input
         TextField(
             value = textInputState,
             onValueChange = { textInputState = it },
@@ -82,6 +76,7 @@ fun SignLanguageApp() {
             )
         )
 
+        // Buttons for sending messages and clearing chat
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -95,12 +90,13 @@ fun SignLanguageApp() {
                 Text("Send")
             }
             Button(onClick = {
-                // To clear the chat
-                databaseReference.setValue(null)
+                databaseReference.setValue(null)  // Clears the chat
             }) {
                 Text("Clear Chat")
             }
         }
+
+        // Button to open the AR functionality
         Button(onClick = {
             val intent = Intent(context, Ar::class.java)
             context.startActivity(intent)
@@ -108,18 +104,17 @@ fun SignLanguageApp() {
             Text("Open AR Activity")
         }
 
-
-
-
+        // Displays the chat messages
         ChatMessages(databaseReference)
     }
 }
 
+// Composable function to display chat messages
 @Composable
 fun ChatMessages(databaseReference: DatabaseReference) {
     var chatMessages by remember { mutableStateOf(listOf<String>()) }
 
-    // Realtime updates of chat messages
+    // Listening to realtime updates from Firebase
     DisposableEffect(databaseReference) {
         val chatListener = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -128,7 +123,7 @@ fun ChatMessages(databaseReference: DatabaseReference) {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                // Handle error if needed
+                // Handle the error here if needed
             }
         }
 
@@ -139,6 +134,7 @@ fun ChatMessages(databaseReference: DatabaseReference) {
         }
     }
 
+    // Displaying chat messages in a LazyColumn
     LazyColumn {
         itemsIndexed(chatMessages) { index, message ->
             Row(
@@ -163,8 +159,7 @@ fun ChatMessages(databaseReference: DatabaseReference) {
     }
 }
 
-
-// Preview
+// Preview for the Composable in Android Studio
 @Preview(showBackground = true)
 @Composable
 fun SignLanguageAppPreview() {
