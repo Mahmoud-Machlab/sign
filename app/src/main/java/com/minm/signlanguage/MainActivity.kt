@@ -163,6 +163,8 @@ fun ChatMessages(databaseReference: DatabaseReference) {
     }
 }
 
+
+// Preview
 @Preview(showBackground = true)
 @Composable
 fun SignLanguageAppPreview() {
