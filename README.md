@@ -1,7 +1,7 @@
 # Chat Support App
 
 
- ![Alt text for your image](AndroidApp.jpg)
+ ![Alt text for your image](AndroidApp.png)
 
 
 SignLanguage is an Android app developed using the Kotlin language and Jetpack Compose. The primary aim of the app is to facilitate real-time communication, taking advantage of Firebase's real-time database capabilities. Additionally, the app interfaces with a web application for a seamless chat experience.
