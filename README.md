@@ -4,7 +4,7 @@
  ![Alt text for your image](AndroidApp.png)
 
 
-SignLanguage is an Android app developed using the Kotlin language and Jetpack Compose. The primary aim of the app is to facilitate real-time communication, taking advantage of Firebase's real-time database capabilities. Additionally, the app interfaces with a web application for a seamless chat experience. The App is for Teaching purposes and the app is not an official app, so it is a basic app tht it will allow you to have a great start building a complete Chatting system that supports many great features.
+SignLanguage is an Android app developed using the Kotlin language and Jetpack Compose. The primary aim of the app is to facilitate real-time communication, taking advantage of Firebase's real-time database capabilities. Additionally, the app interfaces with a web application for a seamless chat experience. The App is for Teaching purposes and the app is not an official app, so it is a basic app that it will allow you to have a great start building a complete Chatting system that supports many great features.
 ---
 
 ## Connecting to Firebase:
