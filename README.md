@@ -27,7 +27,7 @@ For detailed information and troubleshooting, refer to the official Firebase doc
 
 - **Real-time Chatting:** Users can type and send messages in real-time. Messages sent from the Android app are prefixed with "Kotlin", making it easier to identify the source of the message.
 
-- **AR Activity:** Apart from chat, the app offers AR capabilities, where users can tap on a button to open the AR Activity.
+- **AR Activity:** Apart from chat, the app offers AR capabilities, where users can tap on a button to open the AR Activity. In order to integrate the AR then visit this Sdk which is the source of this Ar code (https://github.com/princeku07/AR-Menu-App---Android-Jetpack-Compose-)
 
 - **Chat Management:** Users can clear the entire chat with a single click.
 
